@@ -31,11 +31,12 @@ class SimulationEngine:
         rng = random.Random(self.master_seed)
         return [rng.randrange(2**31) for _ in range(n)]
 
-    def run(self, n_games: int, verbose: bool = False) -> SimulationResult:
+    def run(self, n_games: int, verbose: bool = False, progress: bool =False) -> SimulationResult:
         seeds = self._seeds(n_games)
         results: List[GameResult] = []
         for i, seed in enumerate(seeds, start=1):
-            print(f"Running game {i} of {n_games}")
+            if progress:
+                print(f"Running game {i} of {n_games}")
             cfg = replace(self.base_config, seed=seed, verbose=verbose)
             game = Game(self.player_specs, cfg, logger=GameLogger(enabled=verbose))
             results.append(game.run())
