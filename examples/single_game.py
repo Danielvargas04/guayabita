@@ -14,23 +14,33 @@ from guayabita.strategies import (
     MartingaleStrategy,
     ProbabilityStrategy,
     AllInStrategy,
-)
+    ManuelStrategy, 
+    ManuelStrategy_2,
+    BadBunny,
+    WilchesStrategy,
+    SnowballStrategy,
+)   
 
 
 def main() -> None:
     specs = [
         PlayerSpec(1, ConservativeStrategy()),
-        PlayerSpec(2, AggressiveStrategy(stack_fraction=0.15)),
-        PlayerSpec(3, MartingaleStrategy(base_units=1, max_doublings=5)),
-        PlayerSpec(4, ProbabilityStrategy(max_fraction=0.20)),
-        PlayerSpec(5, AllInStrategy()),
+        #PlayerSpec(2, AggressiveStrategy(stack_fraction=0.15)),
+        #PlayerSpec(3, MartingaleStrategy(base_units=1, max_doublings=5)),
+        #PlayerSpec(4, ProbabilityStrategy(max_fraction=0.20)),
+        #PlayerSpec(5, AllInStrategy()),
+        #PlayerSpec(6, ManuelStrategy()),
+        #PlayerSpec(7, ManuelStrategy_2()),
+        #PlayerSpec(8, BadBunny()),
+        #PlayerSpec(9, WilchesStrategy()),
+        PlayerSpec(10, SnowballStrategy()),
     ]
     config = GameConfig(
-        case=100,
-        initial_stack=5_000,
+        case=200,
+        initial_stack=10_000,
         ante_units=1,
         max_rounds=50,
-        seed=18,
+        seed=42,
         verbose=True,
     )
     result = Game(specs, config).run()
@@ -38,6 +48,18 @@ def main() -> None:
     print(f"final_stacks={result.final_stacks}  final_pool={result.final_pool}")
     print(f"money: initial={result.initial_total_money}  final={result.final_total_money}")
 
+    export = True
+    if export:
+        import pandas as pd
+        stacks = result.stack_evolution
+        stacks_df = pd.DataFrame(stacks)
+        pool_evolution = result.pool_evolution
+        pool_df=pd.DataFrame({
+            "pool": pool_evolution,
+        })
+        df = pd.concat([pool_df, stacks_df], axis=1)
+        df.to_csv("results.csv", index=False)
+        print(f"Results exported to results.csv")   
 
 if __name__ == "__main__":
     main()

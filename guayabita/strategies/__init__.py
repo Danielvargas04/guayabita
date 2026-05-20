@@ -14,6 +14,12 @@ from .random_strategy import RandomStrategy
 from .martingale import MartingaleStrategy
 from .probability import ProbabilityStrategy
 from .all_in import AllInStrategy
+from .manuel import ManuelStrategy
+from .manuel_2 import ManuelStrategy_2
+from .BadBunny import BadBunny
+from .wilches import WilchesStrategy
+from .beltrox import BeltroxStrategy
+from .snowball import SnowballStrategy
 STRATEGIES = {
     "conservative": ConservativeStrategy,
     "aggressive": AggressiveStrategy,
@@ -21,6 +27,12 @@ STRATEGIES = {
     "martingale": MartingaleStrategy,
     "probability": ProbabilityStrategy,
     "all_in": AllInStrategy,
+    "manuel": ManuelStrategy,
+    "manuel_2": ManuelStrategy_2,
+    "bad_bunny": BadBunny,
+    "wilches": WilchesStrategy,
+    "beltrox": BeltroxStrategy,
+    "snowball": SnowballStrategy,
 }
 
 __all__ = [
@@ -32,5 +44,11 @@ __all__ = [
     "RandomStrategy",
     "MartingaleStrategy",
     "ProbabilityStrategy",
-    "STRATEGIES",
+    "AllInStrategy",
+    "ManuelStrategy",
+    "ManuelStrategy_2",
+    "BadBunny",
+    "WilchesStrategy",
+    "BeltroxStrategy",
+    "SnowballStrategy",
 ]

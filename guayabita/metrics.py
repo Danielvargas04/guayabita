@@ -77,6 +77,21 @@ def average_pool_evolution(sim: SimulationResult) -> List[float]:
         for t in range(min_len)
     ]
 
+def average_stack_evolution(sim: SimulationResult) -> List[float]:
+    """Mean stack size at round t, truncated to the shortest game."""
+    if not sim.game_results:
+        return []
+    min_len = min(len(g.stack_evolution) for g in sim.game_results)
+    if min_len == 0:
+        return []
+    return [
+        _safe_mean([float(g.stack_evolution[t]) for g in sim.game_results])
+        for t in range(min_len)
+    ]
+def stack_evolution(sim: SimulationResult) -> List[Dict[int, List[int]]]:
+    return [g.stack_evolution for g in sim.game_results]
+def pool_evolution(sim: SimulationResult) -> List[int]:
+    return [g.pool_evolution for g in sim.game_results]
 
 def format_summary(summary: Dict[str, Dict[str, float]]) -> str:
     """Pretty plain-text table for CLI inspection."""

@@ -27,6 +27,7 @@ class StrategyContext:
     round_index: int
     player_id: int
     player_stack: int
+    initial_stack: int
     pool: int
     case: int
     first_roll: int

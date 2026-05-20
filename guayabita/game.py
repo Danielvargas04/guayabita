@@ -158,6 +158,7 @@ class Game:
             round_index=self.round_index,
             player_id=player.id,
             player_stack=player.stack,
+            initial_stack=cfg.initial_stack,
             pool=self.pool,
             case=cfg.case,
             first_roll=first_roll,
