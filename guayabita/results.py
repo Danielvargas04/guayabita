@@ -17,7 +17,7 @@ class TurnOutcome:
     player_id: int
     first_roll: int
     second_roll: Optional[int]
-    action: str  # "win6", "lose1", "bet_win", "bet_lose", "pass"
+    action: str  # "win6", "lose1", "bet_win", "bet_lose"
     bet: int
     delta_stack: int
     delta_pool: int

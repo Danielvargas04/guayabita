@@ -170,11 +170,8 @@ class Game:
         bet = (bet // cfg.case) * cfg.case  # enforce multiple-of-case post-clamp
 
         if bet <= 0:
-            self.logger.log(f"  P{player.id} rolls {first_roll} -> action but bets 0 (pass)")
-            return TurnOutcome(
-                self.round_index, player.id, first_roll, None,
-                "pass", 0, 0, 0, player.stack, self.pool,
-            )
+            self.logger.log(f"  P{player.id} rolls {first_roll} -> action but dont want bet obligatory {cfg.case}")
+            bet = cfg.case
 
         # Stake leaves the player and enters the pool until resolution.
         player.stack -= bet
